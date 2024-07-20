@@ -1,0 +1,1 @@
+VPC destroy on Sat 20 Jul 2024 04:02:46 PM MDT and VPC ID: vpc-00073ebd73037e497
