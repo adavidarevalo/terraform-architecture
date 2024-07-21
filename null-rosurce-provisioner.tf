@@ -9,7 +9,7 @@ resource "null_resource" "record_create_time" {
     type        = "ssh"
     user        = "ubuntu"
     host        = aws_eip.bastion_eip.public_dns
-    private_key   = file("${path.module}/Terraform-keyPair.pem")
+    private_key = file("${path.module}/Terraform-keyPair.pem")
   }
 
   provisioner "file" {

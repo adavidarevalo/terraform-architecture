@@ -1,15 +1,17 @@
 #!/bin/bash
+
 # Actualiza la lista de paquetes
-yum update -y
+sudo apt update -y &&
 
 # Instala Apache
-yum install -y httpd
+sudo apt install -y apache2 &&
 
 # Inicia el servicio Apache
-systemctl start httpd
+sudo systemctl start apache2 &&
 
 # Habilita Apache para que se inicie en el arranque
-systemctl enable httpd
+sudo systemctl enable apache2 &&
 
-# Crea una página HTML con "Hola Mundo"
-echo "Hola Mundo" > /var/www/html/index.html
+# Crea una página HTML con "Hola Mundo" y limita permisos
+echo "Hola Mundo" | sudo tee /var/www/html/index.html > /dev/null &&
+sudo chmod 644 /var/www/html/index.html
