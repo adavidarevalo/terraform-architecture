@@ -12,7 +12,7 @@ module "load_balancer_sg" {
   egress_rules       = ["all-all"]
   egress_cidr_blocks = ["0.0.0.0/0"]
 
-    ingress_with_cidr_blocks = [
+  ingress_with_cidr_blocks = [
     {
       from_port   = 81
       to_port     = 81
