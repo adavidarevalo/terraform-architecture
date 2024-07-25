@@ -1,9 +1,9 @@
-module "ec2_private" {
+module "ec2_app2_private" {
   depends_on = [data.aws_ami.ec2_ubuntu_ami, module.vpc]
   source     = "terraform-aws-modules/ec2-instance/aws"
   version    = "5.6.1"
 
-  name = "${local.environment}-private"
+  name = "${local.environment}-app2-private"
 
   ami = data.aws_ami.ec2_ubuntu_ami.id
 
@@ -19,10 +19,10 @@ module "ec2_private" {
 
   subnet_id = module.vpc.private_subnets[tonumber(each.key)]
 
-  user_data = file("${path.module}/apache-install.sh")
+  user_data = file("${path.module}/ec2-userData/apache-app2-install.sh")
 
   tags = merge(local.common_tags, {
-    Name = "${local.environment}-${each.key}private"
+    Name = "${local.environment}-${each.key}-app2-private"
   })
 }
 

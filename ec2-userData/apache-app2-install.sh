@@ -16,22 +16,23 @@ sudo systemctl enable apache2
 cd /tmp
 
 # Descarga el archivo ZIP del sitio web
-wget https://www.free-css.com/assets/files/free-css-templates/download/page296/neogym.zip
+wget https://www.free-css.com/assets/files/free-css-templates/download/page296/healet.zip
 
 # Descomprime el archivo ZIP
-unzip neogym.zip
+unzip *.zip
 
 # Elimina el archivo ZIP descargado
-sudo rm -rf neogym.zip
+sudo rm -rf *.zip
 
 # Borra el contenido del directorio HTML de Apache
 sudo rm -rf /var/www/html/*
 
 # Copia el contenido descomprimido al directorio HTML de Apache
-sudo cp -r neogym-html/* /var/www/html/
+sudo mkdir -p /var/www/html/app2 && sudo cp -r *-html/* /var/www/html/app2/
+
 
 # Elimina el directorio temporal descomprimido
-sudo rm -rf /tmp/neogym-html
+sudo rm -rf /tmp/*-html
 
 # Reinicia el servicio Apache
 sudo systemctl restart apache2

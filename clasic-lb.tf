@@ -35,7 +35,7 @@ module "clasic-lb" {
   }
 
   number_of_instances = var.private_instance_count
-  instances           = toset([for instance in module.ec2_private : instance.id])
+  instances           = toset([for instance in module.ec2_app1_private : instance.id])
 
 
 

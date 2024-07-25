@@ -1,7 +1,8 @@
 resource "null_resource" "record_create_time" {
 
   depends_on = [
-    module.ec2_private,
+    module.ec2_app1_private,
+    module.ec2_app2_private,
     module.ec2_public_bastion,
   ]
 
