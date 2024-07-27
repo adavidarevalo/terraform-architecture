@@ -28,7 +28,8 @@ sudo rm -rf *.zip
 sudo rm -rf /var/www/html/*
 
 # Copia el contenido descomprimido al directorio HTML de Apache
-sudo mkdir -p /var/www/html/app2 && sudo cp -r *-html/* /var/www/html/app2/
+# sudo mkdir -p /var/www/html/app2 && sudo cp -r *-html/* /var/www/html/app2/
+sudo cp -r *-html/* /var/www/html/
 
 
 # Elimina el directorio temporal descomprimido

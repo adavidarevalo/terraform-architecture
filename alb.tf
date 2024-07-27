@@ -44,11 +44,14 @@ module "alb" {
             }
           }]
           conditions = [{
-            path_pattern = {
-              values = ["/app1*"]
+            # path_pattern = {
+            #   values = ["/app1*"]
+            # }
+            host_header = {
+              values = ["app1.${local.domain}"]
             }
           }]
-        } # End of myapp1-rule
+        }
         myapp2-rule = {
           actions = [{
             type = "weighted-forward"
@@ -64,22 +67,21 @@ module "alb" {
             }
           }]
           conditions = [{
-            path_pattern = {
-              values = ["/app2*"]
+            # path_pattern = {
+            #   values = ["/app2*"]
+            # }
+            host_header = {
+              values = ["app2.${local.domain}"]
             }
           }]
-        } # End of myapp2-rule Block
+        }
       }
     }
 
   }
 
   target_groups = {
-    # Target Group-1: mytg1
     mytg1 = {
-      # VERY IMPORTANT: We will create aws_lb_target_group_attachment resource separately when we use create_attachment = false, refer above GitHub issue URL.
-      ## Github ISSUE: https://github.com/terraform-aws-modules/terraform-aws-alb/issues/316
-      ## Search for "create_attachment" to jump to that Github issue solution
       create_attachment                 = false
       name_prefix                       = "mytg1-"
       protocol                          = "HTTP"
@@ -91,7 +93,7 @@ module "alb" {
       health_check = {
         enabled             = true
         interval            = 30
-        path                = "/app1/index.html"
+        path                = "/"
         port                = "traffic-port"
         healthy_threshold   = 3
         unhealthy_threshold = 3
@@ -102,11 +104,7 @@ module "alb" {
       tags = local.common_tags # Target Group Tags 
     }                          # END of Target Group-1: mytg1
 
-    # Target Group-1: mytg2 
-    mytg2 = {
-      # VERY IMPORTANT: We will create aws_lb_target_group_attachment resource separately when we use create_attachment = false, refer above GitHub issue URL.
-      ## Github ISSUE: https://github.com/terraform-aws-modules/terraform-aws-alb/issues/316
-      ## Search for "create_attachment" to jump to that Github issue solution      
+    mytg2 = {  
       create_attachment                 = false
       name_prefix                       = "mytg2-"
       protocol                          = "HTTP"
@@ -118,7 +116,7 @@ module "alb" {
       health_check = {
         enabled             = true
         interval            = 30
-        path                = "/app2/index.html"
+        path                = "/"
         port                = "traffic-port"
         healthy_threshold   = 3
         unhealthy_threshold = 3
