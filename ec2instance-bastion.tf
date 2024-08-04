@@ -18,6 +18,8 @@ module "ec2_public_bastion" {
 
   subnet_id = module.vpc.public_subnets[0]
 
+  user_data = file("${path.module}/ec2-userData/jumpbox-install.sh")
+
   tags = merge(local.common_tags, {
     Name = "${local.environment}-BastionHost"
   })

@@ -31,7 +31,8 @@ module "alb" {
       rules = {
         myapp1-rule = {
           actions = [{
-            type = "weighted-forward"
+            type     = "weighted-forward"
+            priority = 1
             target_groups = [
               {
                 target_group_key = "mytg1"
@@ -44,15 +45,13 @@ module "alb" {
             }
           }]
           conditions = [{
-            # path_pattern = {
-            #   values = ["/app1*"]
-            # }
-            host_header = {
-              values = ["app1.${local.domain}"]
+            path_pattern = {
+              values = ["/app1*"]
             }
           }]
         }
         myapp2-rule = {
+          priority = 2
           actions = [{
             type = "weighted-forward"
             target_groups = [
@@ -67,11 +66,29 @@ module "alb" {
             }
           }]
           conditions = [{
-            # path_pattern = {
-            #   values = ["/app2*"]
-            # }
-            host_header = {
-              values = ["app2.${local.domain}"]
+            path_pattern = {
+              values = ["/app2*"]
+            }
+          }]
+        }
+        myapp3-rule = {
+          priority = 3
+          actions = [{
+            type = "weighted-forward"
+            target_groups = [
+              {
+                target_group_key = "mytg3"
+                weight           = 1
+              }
+            ]
+            stickiness = {
+              enabled  = true
+              duration = 3600
+            }
+          }]
+          conditions = [{
+            path_pattern = {
+              values = ["/*"]
             }
           }]
         }
@@ -82,18 +99,18 @@ module "alb" {
 
   target_groups = {
     mytg1 = {
-      create_attachment                 = false
-      name_prefix                       = "mytg1-"
-      protocol                          = "HTTP"
-      port                              = 80
-      target_type                       = "instance"
-      deregistration_delay              = 10
-      load_balancing_cross_zone_enabled = false
-      protocol_version                  = "HTTP1"
+      create_attachment                             = false
+      name_prefix                                   = "mytg1-"
+      protocol                                      = "HTTP"
+      port                                          = 80
+      target_type                                   = "instance"
+      deregistration_delay                          = 10
+      load_balancidbpassword11ng_cross_zone_enabled = false
+      protocol_version                              = "HTTP1"
       health_check = {
         enabled             = true
         interval            = 30
-        path                = "/"
+        path                = "/app1"
         port                = "traffic-port"
         healthy_threshold   = 3
         unhealthy_threshold = 3
@@ -104,7 +121,7 @@ module "alb" {
       tags = local.common_tags # Target Group Tags 
     }                          # END of Target Group-1: mytg1
 
-    mytg2 = {  
+    mytg2 = {
       create_attachment                 = false
       name_prefix                       = "mytg2-"
       protocol                          = "HTTP"
@@ -116,7 +133,7 @@ module "alb" {
       health_check = {
         enabled             = true
         interval            = 30
-        path                = "/"
+        path                = "/app2"
         port                = "traffic-port"
         healthy_threshold   = 3
         unhealthy_threshold = 3
@@ -125,7 +142,29 @@ module "alb" {
         matcher             = "200-399"
       }
       tags = local.common_tags # Target Group Tags 
-    }                          # END of Target Group-2: mytg2
+    }
+    mytg3 = {
+      create_attachment                 = false
+      name_prefix                       = "mytg3-"
+      protocol                          = "HTTP"
+      port                              = 80
+      target_type                       = "instance"
+      deregistration_delay              = 10
+      load_balancing_cross_zone_enabled = false
+      protocol_version                  = "HTTP1"
+      health_check = {
+        enabled             = true
+        interval            = 30
+        path                = "/"
+        port                = "traffic-port"
+        healthy_threshold   = 3
+        unhealthy_threshold = 3
+        timeout             = 6
+        protocol            = "HTTP"
+        matcher             = "200-399"
+      }
+      tags = local.common_tags
+    } # END of Target Group-3: mytg3
   }
 
   tags = merge(local.common_tags, {
@@ -143,6 +182,13 @@ resource "aws_lb_target_group_attachment" "mytg1" {
 resource "aws_lb_target_group_attachment" "mytg2" {
   for_each         = { for k, v in module.ec2_app2_private : k => v }
   target_group_arn = module.alb.target_groups["mytg2"].arn
+  target_id        = each.value.id
+  port             = 80
+}
+
+resource "aws_lb_target_group_attachment" "mytg3" {
+  for_each         = { for k, v in module.ec2_app3_private : k => v }
+  target_group_arn = module.alb.target_groups["mytg3"].arn
   target_id        = each.value.id
   port             = 80
 }

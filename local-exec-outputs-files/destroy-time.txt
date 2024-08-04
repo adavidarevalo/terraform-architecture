@@ -12,3 +12,17 @@ VPC destroy on Thu 25 Jul 2024 03:20:58 PM MDT and VPC ID: vpc-0f7d1527467752470
 VPC destroy on Thu 25 Jul 2024 04:08:26 PM MDT and VPC ID: vpc-00494d180c609bc32
 VPC destroy on Fri 26 Jul 2024 11:19:49 PM MDT and VPC ID: vpc-0442d98998fa137bf
 VPC destroy on Fri 26 Jul 2024 11:37:20 PM MDT and VPC ID: vpc-0b859601bff4c74c1
+VPC destroy on Sat 27 Jul 2024 09:25:21 PM MDT and VPC ID: vpc-063a12fd6e0549854
+VPC destroy on Sun 28 Jul 2024 03:32:52 PM MDT and VPC ID: vpc-01d8c0969fd9ecc56
+VPC destroy on Sun 28 Jul 2024 05:37:53 PM MDT and VPC ID: vpc-0ca479eebcfc9afa8
+VPC destroy on Thu 01 Aug 2024 10:30:44 AM MDT and VPC ID: vpc-0f882cc964293154b
+VPC destroy on Thu 01 Aug 2024 11:48:18 AM MDT and VPC ID: vpc-038d1970b5122fe05
+VPC destroy on Thu 01 Aug 2024 04:18:34 PM MDT and VPC ID: vpc-04275cde7c5bf85ac
+VPC destroy on Fri 02 Aug 2024 08:01:09 AM MDT and VPC ID: vpc-0b95df490e2442152
+VPC destroy on Fri 02 Aug 2024 09:38:46 AM MDT and VPC ID: vpc-0caf1f826fb2574f0
+VPC destroy on Fri 02 Aug 2024 10:16:42 AM MDT and VPC ID: vpc-08a2daba622696bea
+VPC destroy on Sat 03 Aug 2024 08:54:28 AM MDT and VPC ID: vpc-02e9ec10cc6b8233e
+VPC destroy on Sat 03 Aug 2024 10:13:32 AM MDT and VPC ID: vpc-0f6eebeef7855f407
+VPC destroy on Sat 03 Aug 2024 08:21:49 PM MDT and VPC ID: vpc-0858b4451b8959e23
+VPC destroy on Sat 03 Aug 2024 10:02:11 PM MDT and VPC ID: vpc-0e472cfe61df66c72
+VPC destroy on Sun 04 Aug 2024 02:51:40 AM MDT and VPC ID: vpc-0f704cea2c1ecc5a4
