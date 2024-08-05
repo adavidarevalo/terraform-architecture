@@ -26,3 +26,5 @@ VPC created on Sat 03 Aug 2024 09:37:24 AM MDT and VPC ID: vpc-0f6eebeef7855f407
 VPC created on Sat 03 Aug 2024 07:36:22 PM MDT and VPC ID: vpc-0858b4451b8959e23
 VPC created on Sat 03 Aug 2024 08:50:52 PM MDT and VPC ID: vpc-0e472cfe61df66c72
 VPC created on Sat 03 Aug 2024 10:55:06 PM MDT and VPC ID: vpc-0f704cea2c1ecc5a4
+VPC created on Sun 04 Aug 2024 04:58:38 PM MDT and VPC ID: vpc-0358f673ab3f0356f
+VPC created on Mon 05 Aug 2024 07:43:01 AM MDT and VPC ID: vpc-0d530c2c640b00374

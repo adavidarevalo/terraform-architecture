@@ -186,10 +186,10 @@ resource "aws_lb_target_group_attachment" "mytg2" {
   port             = 80
 }
 
-resource "aws_lb_target_group_attachment" "mytg3" {
-  for_each         = { for k, v in module.ec2_app3_private : k => v }
-  target_group_arn = module.alb.target_groups["mytg3"].arn
-  target_id        = each.value.id
-  port             = 80
-}
+# resource "aws_lb_target_group_attachment" "mytg3" {
+#   for_each         = { for k, v in module.ec2_app3_private : k => v }
+#   target_group_arn = module.alb.target_groups["mytg3"].arn
+#   target_id        = each.value.id
+#   port             = 80
+# }
 
